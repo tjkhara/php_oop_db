@@ -44,10 +44,10 @@
     }
   }
 
- $pt_student = new PartTimeStudent();
+ /*$pt_student = new PartTimeStudent();
 
   $pt_student->tuition = 1000;
 
-  echo $pt_student->tuition;
+  echo $pt_student->tuition;*/
 
 
