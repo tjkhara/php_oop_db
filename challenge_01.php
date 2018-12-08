@@ -16,13 +16,13 @@ class Bicycle
 
   function weight_lbs($kg)
   {
-    $weight_in_lbs = $kg * 2.2046226218;
+    $weight_in_lbs = floatval($kg) * 2.2046226218;
     return $weight_in_lbs;
   }
 
   function set_weight_pounds($weight_in_lbs)
   {
-    $this->weight_kg = $weight_in_lbs/2.2046226218;
+    $this->weight_kg = floatval($weight_in_lbs)/2.2046226218;
   }
 
 }
