@@ -7,7 +7,7 @@
     public $country = 'None';
 
     protected $registration_id;
-    private $tuition = 0.00;
+    private $tuition = 500.00;
 
     public function full_name()
     {
@@ -28,6 +28,11 @@
     {
       return "Hello me!";
     }
+
+    public function tuition_fmt()
+    {
+      return '$' . $this->tuition;
+    }
   }
 
 
@@ -39,7 +44,10 @@
     }
   }
 
-  $pt_student = new PartTimeStudent();
-  echo $pt_student->hello_parent();
+ $pt_student = new PartTimeStudent();
+
+  $pt_student->tuition = 1000;
+
+  echo $pt_student->tuition;
 
 
