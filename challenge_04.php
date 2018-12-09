@@ -27,7 +27,7 @@
     }
 
     public static function wheel_details() {
-      echo "Wheels in Bicycle is " . self::$wheels . "<br>";
+      echo "Wheels: " . self::$wheels . "<br>";
     }
 
     public function weight_kg() {
@@ -51,7 +51,7 @@
 
   class Unicycle extends Bicycle {
 
-    public static $is_met = false;
+    public static $is_met = true;
 
 
     public static function create()
@@ -85,6 +85,15 @@
 
     }
   }
+
+  echo "Bicycle: " . "<br>";
+
+  Bicycle::wheel_details();
+
+  echo "<br>";
+  echo "<hr>";
+
+  echo "Unicycle: " . "<br>";
 
   Unicycle::wheel_details();
 
