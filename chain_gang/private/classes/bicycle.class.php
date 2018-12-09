@@ -1,94 +1,76 @@
 <?php
 
-  class Bicycle
-  {
-    public const CATEGORIES = ['road','mountain','hybrid','cruiser','city','BMX'];
+class Bicycle {
 
-    public const GENDERS = ['mens', 'womens', 'unisex'];
+  public $brand;
+  public $model;
+  public $year;
+  public $category;
+  public $color;
+  public $description;
+  public $gender;
+  public $price;
+  protected $weight_kg;
+  protected $condition_id;
 
-    public const CONDITION_OPTIONS =
-      [
-        1 => 'Beat Up',
-        2 => 'Decent',
-        3 => 'Good',
-        4 => 'Great',
-        5 => 'Like new'
-      ];
+  public const CATEGORIES = ['Road', 'Mountain', 'Hybrid', 'Cruiser', 'City', 'BMX'];
 
-    public $brand = "Not set";
-    public $model = "Not set";
-    public $year = "Not set";
-    public $category = "Not set";
-    public $color = "Not set";
-    public $gender = "Not set";
-    public $price = 0;
-    public $weight_kg = 0;
-    public $condition = 0;
+  public const GENDERS = ['Mens', 'Womens', 'Unisex'];
 
-    // Method will take in id and return condition
-    public function condition($id)
-    {
-      if($id == 0)
-      {
-        echo "ID is not set" . "<br>";
-        return;
-      }
-      else
-      {
-        return self::CONDITION_OPTIONS[$id];
-      }
-    }
+  protected const CONDITION_OPTIONS = [
+    1 => 'Beat up',
+    2 => 'Decent',
+    3 => 'Good',
+    4 => 'Great',
+    5 => 'Like New'
+  ];
 
+  public function __construct($args=[]) {
+    //$this->brand = isset($args['brand']) ? $args['brand'] : '';
+    $this->brand = $args['brand'] ?? '';
+    $this->model = $args['model'] ?? '';
+    $this->year = $args['year'] ?? '';
+    $this->category = $args['category'] ?? '';
+    $this->color = $args['color'] ?? '';
+    $this->description = $args['description'] ?? '';
+    $this->gender = $args['gender'] ?? '';
+    $this->price = $args['price'] ?? 0;
+    $this->weight_kg = $args['weight_kg'] ?? 0.0;
+    $this->condition_id = $args['condition_id'] ?? 3;
 
-    //  brand,model,year,category,gender,color,weight_kg,condition_id,price
-    public function __construct($args=[])
-    {
-      $this->brand = $args['brand'] ?? $this->brand;
-      $this->model = $args['model'] ?? $this->model;
-      $this->year = $args['year'] ?? $this->year;
-      $this->category = $args['category'] ?? $this->category;
-      $this->color = $args['color'] ?? $this->color;
-      $this->condition = $args['condition'] ?? $this->condition;
-      $this->gender = $args['gender'] ?? $this->gender;
-      $this->price = $args['price'] ?? $this->price;
-      $this->weight_kg = $args['weight_kg'] ?? $this->weight_kg;
-    }
+    // Caution: allows private/protected properties to be set
+    // foreach($args as $k => $v) {
+    //   if(property_exists($this, $k)) {
+    //     $this->$k = $v;
+    //   }
+    // }
+  }
 
-    // Getters and setters
+  public function weight_kg() {
+    return number_format($this->weight_kg, 2) . ' kg';
+  }
 
-    /**
-     * @return int|mixed
-     */
-    public function getWeightKg()
-    {
-      return floatval($this->weight_kg);
-    }
+  public function set_weight_kg($value) {
+    $this->weight_kg = floatval($value);
+  }
 
-    // Set weight KG
-    public function setWeightKg($weight_kg): void
-    {
-      if($weight_kg <= 0)
-      {
-        trigger_error('Weight must be greater than zero.', E_USER_NOTICE);
-        return;
-      }
+  public function weight_lbs() {
+    $weight_lbs = floatval($this->weight_kg) * 2.2046226218;
+    return number_format($weight_lbs, 2) . ' lbs';
+  }
 
-      $this->weight_kg = floatval($weight_kg);
-    }
+  public function set_weight_lbs($value) {
+    $this->weight_kg = floatval($value) / 2.2046226218;
+  }
 
-    // Get weight in pounds
-    public function getWeightPounds()
-    {
-      return $this->weight_kg * 2.2046226218;
-    }
-
-    // Set weight pounds
-    public function setWeightPounds($weight_pounds)
-    {
-      $this->weight_kg = floatval($weight_pounds)/2.2046226218;
+  public function condition() {
+    if($this->condition_id > 0) {
+      return self::CONDITION_OPTIONS[$this->condition_id];
+    } else {
+      return "Unknown";
     }
   }
 
-//  brand,model,year,category,gender,color,weight_kg,condition_id,price
-//  Trek,Emonda,2017,Hybrid,Unisex,black,1.5,5,1495.00
+}
 
+?>
