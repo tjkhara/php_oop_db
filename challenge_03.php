@@ -8,6 +8,30 @@
     private $description = 'Used bicycle';
     private $weight_kg = 0.0;
     protected $wheels = 2;
+    protected $wheel_string;
+
+    // Returns details about the wheels
+    public function wheel_details()
+    {
+      if($this->wheels == 1)
+      {
+        return "It has " . $this->wheels . " wheel" . "<br>";
+      }
+      else
+      {
+        return "It has " . $this->wheels . " wheels" . "<br>";
+      }
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getWheels(): int
+    {
+      return $this->wheels;
+    }
+
 
     /**
      * @return mixed
@@ -73,11 +97,8 @@
       $this->weight_kg = floatval($value) / 2.2046226218;
     }
 
-    // Returns details about the wheels
-    public function wheel_details()
-    {
-      return "It has " . $this->wheels . " wheels" . "<br>";
-    }
+
+
 
     // Takes weight as KG and sets it
     public function set_weight_kg($weight)
@@ -118,5 +139,22 @@
   $trek->set_weight_lbs(2);
   echo $trek->weight_kg() . "<br />";
   echo $trek->weight_lbs() . "<br />";
+
+  echo "<br>";
+  echo "<hr>";
+
+  $u = new Unicycle();
+  echo "<pre>";
+  print_r($u);
+  echo "</pre>";
+
+  echo "<br>";
+  echo "<hr>";
+
+  echo $u->wheel_details();
+
+
+
+
 
 
