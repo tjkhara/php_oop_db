@@ -1,4 +1,1 @@
-This project contains the second revision of object oriented concepts in PHP from Kevin Skoglund's course PHP: Object-Oriented Programming. The final chain gang is a website that takes a csv file and displays that csv file in a table using object oriented
-concepts.
-
-The commit history of this project can be used to create branches at any time to revise any PHP OOP concept in the future.
+Object oriented programming with PHP with databases.
