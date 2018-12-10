@@ -43,4 +43,31 @@ function is_get_request() {
   return $_SERVER['REQUEST_METHOD'] == 'GET';
 }
 
+function read_file($filename)
+{
+
+  $data = [];
+
+  if(fopen($filename, 'r'))
+  {
+    $file = fopen($filename, 'r');
+  }
+  else
+  {
+    echo "Could not open file." . "<br>";
+    return;
+  }
+
+  while(!feof($file))
+  {
+    $row = fgetcsv($file, 0, ',');
+    if($row == [NULL] || $row == false){continue;}
+    $data[] = $row;
+  }
+
+  fclose($file);
+
+  return $data;
+}
+
 ?>
