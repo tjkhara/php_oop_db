@@ -25,33 +25,15 @@
         <th>Condition</th>
         <th>Price</th>
       </tr>
+
 <?php
 
-  $data = read_file('../private/used_bicycles.csv');
-
-  foreach ($data as $k => $v)
-  {
-
-  }
-
-
-
-$args = ['brand'=>'Trek', 'model'=>'Emonda', 'year'=>'2017', 'gender'=>'Unisex', 'color'=>'black',
-  'weight_kg' => 1.5, 'price' =>1000, 'category' => Bicycle::CATEGORIES[0]];
-$bike = new Bicycle($args);
+$parser = new ParseCSV(PRIVATE_PATH . '/used_bicycles.csv');
+$bike_array = $parser->parse();
 
 ?>
-      <?php for ($i = 0; $i < sizeof($data); $i++) {
-
-        if($i == 0) { continue; }
-
-        $args1 = ['brand' => $data[$i][0], 'model' => $data[$i][1], 'year' => $data[$i][2], 'category' => $data[$i][3],
-          'gender' => $data[$i][4], 'color' => $data[$i][5], 'weight_kg' => floatval($data[$i][6]), 'condition_id' => $data[$i][7],
-          'price' => floatval($data[$i][8])];
-
-        $bike = new Bicycle($args1);
-
-      ?>
+      <?php foreach($bike_array as $args) { ?>
+        <?php $bike = new Bicycle($args); ?>
       <tr>
         <td><?php echo h($bike->brand); ?></td>
         <td><?php echo h($bike->model); ?></td>
