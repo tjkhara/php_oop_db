@@ -470,3 +470,16 @@ $result->num_rows;
 // Better to get an array of values and then build your own object
 
 
+-----------------------------------------------------------------------------------------------
+
+// Disconnecting from the database
+
+// Create the object
+$db = new mysqli($server, $user, $pwd, $db_name);
+// Run a query and get a result set
+$result = $db->query($sql);
+
+// Procedural version
+mysqli_close($db);
+// OOP version
+$db->close();
