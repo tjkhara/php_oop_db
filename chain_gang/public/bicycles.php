@@ -25,18 +25,26 @@
         <th>Condition</th>
         <th>Price</th>
       </tr>
+<?php
 
+$args = ['brand'=>'Trek', 'model'=>'Emonda', 'year'=>'2017', 'gender'=>'Unisex', 'color'=>'black',
+  'weight_kg' => 1.5, 'price' =>1000, 'category' => Bicycle::CATEGORIES[0]];
+$bike = new Bicycle($args);
+
+?>
+      <?php for ($i = 0; $i < 10; $i++) { ?>
       <tr>
-        <td>Brand</td>
-        <td>Model</td>
-        <td>Year</td>
-        <td>Category</td>
-        <td>Gender</td>
-        <td>Color</td>
-        <td>Weight</td>
-        <td>Condition</td>
-        <td>Price</td>
+        <td><?php echo h($bike->brand); ?></td>
+        <td><?php echo h($bike->model); ?></td>
+        <td><?php echo h($bike->year); ?></td>
+        <td><?php echo h($bike->category); ?></td>
+        <td><?php echo h($bike->gender); ?></td>
+        <td><?php echo h($bike->color); ?></td>
+        <td><?php echo h($bike->weight_kg()) . ' / ' . h($bike->weight_lbs()); ?></td>
+        <td><?php echo h($bike->condition()); ?></td>
+        <td><?php echo "$" . number_format(h($bike->price), 2); ?></td>
       </tr>
+      <?php } ?>
 
     </table>
   </div>
